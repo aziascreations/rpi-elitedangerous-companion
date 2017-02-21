@@ -1,0 +1,30 @@
+https://github.com/thelinmichael/spotify-web-api-node
+
+Icons:
+http://www.webalys.com/nova/
+https://icons8.com/
+
+https://www.shareicon.net/
+https://www.shareicon.net/pack/technology-collection?p=5
+https://www.shareicon.net/pack/contact-communication
+https://www.shareicon.net/pack/work-productivity-icons
+
+https://www.shareicon.net/pack/wpzoom-developer-icon-set
+http://www.wpzoom.com/wpzoom/new-freebie-wpzoom-developer-icon-set-154-free-icons/
+
+planet-0
+	https://www.shareicon.net/planet-education-space-satellite-orbit-galaxy-planet-earth-sputnik-816274
+planet-1
+	https://www.shareicon.net/planet-earth-space-satellite-orbit-galaxy-planet-education-816266
+planet-2
+	https://www.shareicon.net/galaxy-astronomy-education-planet-universe-736631
+planet-3
+	https://www.shareicon.net/planet-80110
+
+
+note-0
+	https://www.shareicon.net/certificate-interface-degree-contract-diploma-education-patent-781234
+
+
+
+software parts

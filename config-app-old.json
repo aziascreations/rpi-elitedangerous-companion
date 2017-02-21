@@ -1,0 +1,62 @@
+{
+  "port": 42000,
+  "isConfigured": true,
+  "muted": false,
+  "options": {
+    "volume": 1
+  },
+  "databases": {
+    "stations": "",
+    "systemsPopulated": ""
+  },
+  "player": {
+    "name": "Unknown",
+    "ship": {
+      "name": "Sidewinder",
+      "id": 0
+    },
+    "money": "420",
+    "ranks": {
+      "combat": 0,
+      "trade": 0,
+      "exploration": 0,
+      "cqc": 0,
+      "empire": 0,
+      "federation": 0
+    },
+    "progress": {
+      "combat": 0,
+      "trade": 0,
+      "exploration": 0,
+      "cqc": 0,
+      "empire": 0,
+      "federation": 0
+    },
+    "location": {
+      "docked": false,
+      "supercruise": false,
+      "landed": false,
+      "station": {
+        "name": "Unknown",
+        "type": "Unknown",
+        "allegiance": "Unknown",
+        "economy": "!Unknown",
+        "faction": "Unknown",
+        "government": "!Unknown"
+      },
+      "system": {
+        "name": "Unknown",
+        "allegiance": "Unknown",
+        "economy": "!Unknown",
+        "government": "!Unknown",
+        "security": "!Unknown"
+      },
+      "position": {
+        "body": "Unknown",
+        "bodyType": "Unknown",
+        "latitude": 0,
+        "longitude": 0
+      }
+    }
+  }
+}

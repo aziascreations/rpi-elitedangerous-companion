@@ -1,0 +1,488 @@
+/* Fonts stuff */
+$font-family-header: 'eurocaps', sans-serif;
+$font-family-text: 'syntony', sans-serif;
+//$font-family-number: 'telegrama', sans-serif;
+$font-bold: 700;
+$color-orange: #ff7100;
+$color-orange-d1: #E56300;
+$color-orange-d2: #CC5800;
+$color-orange-d3: #B24700;
+$color-orange-d4: #993A00;
+
+//$url-img-flaticon: "../img/svg/flaticon";
+//$url-img-fontawesome: "../img/svg/font-awesome";
+//$url-img-nova: "../img/svg/nova";
+$url-img-shareicon: "../img/svg/shareicon";
+
+$url-img-material: "../img/svg/material";
+$url-img-wpzoom: "../img/svg/wpzoom";
+
+// Heading font
+@font-face {
+	font-family: "eurocaps";
+	src: url('../fonts/eurocaps.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+// Paragraph font
+@font-face {
+	font-family: "syntony";
+	src: url('../fonts/Sintony-Regular.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "syntony";
+	src: url('../fonts/Sintony-Bold.ttf');
+	font-weight: bold;
+	font-style: normal;
+}
+/*@font-face {
+	font-family: "telegrama";
+	src: url('../fonts/telegrama_raw_osn.otf');
+}*/
+
+/* More stuff */
+$backgroundColor: #090707;
+
+body, html {
+	//background: $backgroundColor;
+	background: repeating-linear-gradient(to bottom, rgba(13,13,13,0.9), rgba(13,13,13,0.9) 3px, rgba(16,16,16,0.9) 3px, rgba(16,16,16,0.9) 6px);
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	
+	color: white;
+	font-family: $font-family-text;
+	color: $color-orange;
+	
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	
+	cursor: default;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font-family-header;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	
+	&#loadingScreen {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	&#homeScreen {
+		
+	}
+}
+
+$outOfShadowMargin: 12px;
+#homeScreen {
+	/* Fix the loading screen mess */
+	display: none;
+	
+	/*#currentSystem {
+		color: darkorange;
+	}/**/
+	$navbarHeight: 32px;
+	$footerMenuHeight: 64px;
+	
+	.subcontainer {
+		position: absolute;
+		top: $navbarHeight;
+		left: 0;
+		padding-bottom: $outOfShadowMargin;
+		overflow-y: hidden; //No scrolling
+		overflow-y: auto; // works best for now.
+		
+		width: 100%;
+		height: calc(100% - #{$footerMenuHeight} - #{$navbarHeight} - #{$outOfShadowMargin});
+		//max-height: calc(100% - $footerMenuHeight - $navbarHeight);
+	}
+	
+	#navbar, #footerMenu, .footer {
+		//The 4th px value is spread
+		-webkit-box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.75);
+		z-index: 100;
+	}
+	
+	#navbar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: $navbarHeight;
+		
+		$navbarContainerMargin: 24px;
+		
+		div {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			
+			font-weight: bold;
+			font-size: 1.25em;
+			font-family: $font-family-header !important;
+			letter-spacing: 1px;
+			
+			&:first-child {
+				left: $navbarContainerMargin;
+				justify-content: flex-start;
+			}
+			
+			&:last-child {
+				left: -$navbarContainerMargin;
+				justify-content: flex-end;
+			}
+		}
+	}
+	
+	$buttonSize: $footerMenuHeight - 12px;
+	$buttonImageColor: rgba(180,61,13,1.0);
+	$buttonImageHoverColor: rgba(248,113,0,1.0);
+	
+	.footer {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: $footerMenuHeight;
+	}
+	
+	#footerVolume {
+		display: none;
+		
+	}
+	
+	#footerMenu {
+		//background-color: deeppink;
+		
+		// http://www.flaticon.com ?
+		.button {
+			$buttonTopMargin: ( $footerMenuHeight - $buttonSize ) / 2;
+			$buttonSideMargin: 8px;
+			
+			//display: inline;
+			width: $buttonSize;
+			height: $buttonSize;
+			transition: ease 0.25s;
+			//border-left: 5px solid transparent;
+			//border-right: 5px solid transparent;
+			
+			display: inline-block;
+			//margin: $buttonTopMargin $buttonSideMargin 0 $buttonSideMargin;
+			margin: $buttonTopMargin 0 0 $buttonSideMargin;
+			
+			background: $buttonImageColor;
+			//-webkit-mask-box-image: url("#{$url-img-flaticon}/cross-1.svg") stretch;
+			
+			//#{$url-img-flaticon}: "../img/svg/flaticon/";
+			//#{$url-img-fontawesome}: "../img/svg/font-awesome/";
+			//#{$url-img-nova}: "../img/svg/nova/";
+			
+			&:hover {
+				background: $buttonImageHoverColor;
+			}
+			
+			&.location {
+				-webkit-mask-box-image: url("#{$url-img-wpzoom}/planet.svg") stretch;
+			}
+			&.profile {
+				-webkit-mask-box-image: url("#{$url-img-wpzoom}/user.svg") stretch;
+			}
+			
+			&.commodities {
+				-webkit-mask-box-image: url("#{$url-img-wpzoom}/ecommerce.svg") stretch;
+			}
+			&.notes {
+				-webkit-mask-box-image: url("#{$url-img-wpzoom}/book.svg") stretch;
+			}
+			
+			&.spacer {
+				margin-left: $buttonSideMargin * 5;
+			}
+			&.disabled {
+				background-color: darkslategrey;
+			}
+			&:not(.disabled) {
+				cursor: pointer;
+			}
+			&.right {
+				float: right;
+				margin: $buttonTopMargin $buttonSideMargin 0 0;
+				&.spacer {
+					margin-right: $buttonSideMargin * 5;
+				}
+			}
+			
+			&.menu {
+				-webkit-mask-box-image: url("#{$url-img-wpzoom}/gear.svg") stretch;
+			}
+			&.volume-on {
+				-webkit-mask-box-image: url("#{$url-img-wpzoom}/volume.svg") stretch;
+			}
+			&.volume-off {
+				-webkit-mask-box-image: url("#{$url-img-wpzoom}/volume.svg") stretch;
+			}
+			&.exit {
+				-webkit-mask-box-image: url("#{$url-img-wpzoom}/minimize.svg") stretch;
+			}
+		}
+	}
+	
+	/* Subcontainers */
+	#systemInfo {
+		
+		#systemNameBar {
+			$systemNameBarHeight: 64px;
+			
+			width: 100%;
+			height: $systemNameBarHeight;
+			margin-top: $outOfShadowMargin;
+			
+			div {
+				display: inline-block;
+				height: 100%;
+				min-height: 100%;
+				
+				&:first-child {
+					background-color: $buttonImageColor;
+					width: $systemNameBarHeight;
+					margin-left: 8px;
+				}
+				&.none {
+					width: 0;
+					margin-left: 0;
+				}
+				&.empire {
+					-webkit-mask-box-image: url("../img/factions/Empire.svg") round;
+					width: $systemNameBarHeight * 1.6;
+				}
+				&.federation {
+					-webkit-mask-box-image: url("../img/factions/Federation.svg") round;
+					width: $systemNameBarHeight * 1.3;
+				}
+				&.alliance {
+					-webkit-mask-box-image: url("../img/factions/Alliance.svg") round;
+				}
+				&:last-child {
+					display: inline-flex;
+					margin-left: 10px;
+					vertical-align: top;
+					font-size: 1.5em;
+					align-items: center;
+				}
+			}
+		}
+		
+	}
+	
+	#notes {
+		//margin: 0;
+		
+		#notes-menu {
+			width: 100%;
+			height: 48px;
+			border-bottom: 2px solid #{$color-orange-d3};
+			margin-top: 8px;
+		}
+		
+		>div:not(#notes-menu) {
+			width: 100%;
+			height: calc(100% - 48px - 2px - 8px);
+		}
+		
+		.sidebar {
+			height: 100%;
+			border-right: 1px solid #{$color-orange-d4};
+			width: 40%;
+		}
+		.editor {
+			height: 100%;
+			width: calc(60% - 1px);
+		}
+		
+		#notes-bookmarks {
+			
+			.sidebar {
+				
+			}
+			.editor {
+				
+			}
+		}
+		
+		#notes-notes {
+			display: none;
+			
+			.sidebar {
+				
+			}
+			.editor {
+				
+			}
+		}
+	}
+}
+
+div {
+	//border: 1px solid orange;
+}
+ul, li {
+	//border: 1px solid orange;
+}
+
+// Looks ugly but does the work
+//#mainMenu > ul div.icon
+#mainMenu {
+	> ul {
+		margin: 0 12px #{$outOfShadowMargin} 12px;
+		//margin-top: $outOfShadowMargin;
+		//height: calc(100% - #{$outOfShadowMargin});
+		//overflow-y: hidden;
+		
+		/*div.icon {
+			height: 100%;
+			background-color: aqua;
+		}/**/
+		
+		> li {
+			font-weight: bold;
+			font-size: 1.7em;
+			//line-height: 1.8em;
+			//height: 1.8em;
+			margin: 16px 0 4px 0;
+			
+			&:not(:first-child) {
+				margin-top: 20px;
+			}
+			
+			ul {
+				margin-left: 16px;
+				
+				li {
+					font-size: 1.0em;
+					//line-height: 1.3em;
+					//height: 1.3em;
+					margin: 16px 0 0 0;
+					font-weight: normal;
+				}
+			}
+			
+			&.open {
+				
+				ul {
+					
+				}
+			}
+		}
+		
+		li {
+			cursor: pointer;
+		}
+	}
+}
+
+#configScreen {
+	display: none;
+	padding: 12px;
+	h1 {
+		font-weight: bold;
+		font-size: 1.7em;
+		margin-bottom: 8px;
+	}
+	p {
+		margin: 4px 0 0 8px;
+		&.info {
+			margin: 6px 0 12px 2px;
+			font-size: 1.1em;
+		}
+		&:last-child {
+			//Bottom center.
+		}
+		//+:not(input) {}
+	}
+	input {
+		margin: 4px 0 12px 12px;
+		width: 33%;
+	}
+	button {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		margin: 16px;
+		&:last-child {
+			left: auto;
+			right: 0;
+		}
+	}
+}
+
+/* Hide scrollbar in webkit */
+/* Source: http://stackoverflow.com/a/30680994/4135541 */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+/* Loading Icon */
+/* Source: http://codepen.io/jpanter/pen/PWWQXK */
+$loaderColor: #fd7000;
+$loaderSize: 12px;
+$loaderTime: 1;
+.dank-ass-loader {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.row {
+		display: flex;
+	}
+}
+.arrow {
+	width: 0; 
+	height: 0;
+	margin: 0 (-$loaderSize / 2);
+	border-left: $loaderSize solid transparent;
+	border-right: $loaderSize solid transparent;
+	border-bottom: ($loaderSize * 1.8) solid $loaderColor;
+	animation: blink $loaderTime + s infinite;
+	filter: drop-shadow(0 0 ($loaderSize * 1.5) $loaderColor);
+	
+	&.down {
+		transform: rotate(180deg);
+	}
+
+	@for $i from 1 through 18 {
+		&.outer-#{$i} {
+			animation-delay: -($loaderTime / 18) * $i + s;
+		}  
+	}
+
+	@for $i from 1 through 6 {
+		&.inner-#{$i} {
+			animation-delay: -($loaderTime / 6) * $i + s;
+		}  
+	}  
+}
+@keyframes blink {
+	0% { opacity: 0.1; }
+	30% { opacity: 1; }
+	100% { opacity: 0.1; }
+}

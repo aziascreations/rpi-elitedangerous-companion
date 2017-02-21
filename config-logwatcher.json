@@ -1,0 +1,10 @@
+{
+  "clients": [
+    {
+      "ip": "127.0.0.1",
+      "port": 42000
+    }
+  ],
+  "logsFolder": "C:\\Users\\Herwin\\Saved Games\\Frontier Developments\\Elite Dangerous",
+  "filesHashes": {}
+}

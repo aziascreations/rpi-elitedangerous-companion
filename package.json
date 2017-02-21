@@ -1,0 +1,23 @@
+{
+  "name": "rpi-elitedangerous-companion",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index-app.js",
+  "scripts": {
+    "start": "electron .",
+    "sass": "node ./index-sass.js"
+  },
+  "author": "",
+  "license": "WTFPL",
+  "dependencies": {
+    "dateformat": "^2.0.0",
+    "electron": "^1.4.15",
+    "isnullorempty": "^1.0.1",
+    "lowdb": "^0.15.5",
+    "node-sass": "^4.5.0",
+    "node-watch": "^0.4.1",
+    "socket.io": "^1.7.3",
+    "socket.io-client": "^1.7.3",
+    "touch": "^1.0.0"
+  }
+}

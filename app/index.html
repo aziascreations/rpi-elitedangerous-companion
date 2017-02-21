@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<link rel="icon" href="./app.ico">
+		
+		<link rel="stylesheet" type="text/css" href="./css/reset.css">
+		<!--<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">-->
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+		
+		<script src="./js/hammer-2.0.8.min.js"></script>
+	</head>
+	<body>
+		<audio id="sfx-highlight">
+			<source src="./sfx/highlight.mp3"></source>
+			<source src="./sfx/highlight.ogg"></source>
+		</audio>
+		<audio id="sfx-click">
+			<source src="./sfx/click.mp3"></source>
+			<source src="./sfx/click.ogg"></source>
+		</audio>
+		<audio id="sfx-welcome">
+			<source src="./sfx/welcome.mp3"></source>
+			<source src="./sfx/welcome.ogg"></source>
+		</audio>
+		
+		<div id="loadingScreen" class="container">
+			<div class="dank-ass-loader">
+				<div class="row">
+					<div class="arrow up outer outer-18"></div>
+					<div class="arrow down outer outer-17"></div>
+					<div class="arrow up outer outer-16"></div>
+					<div class="arrow down outer outer-15"></div>
+					<div class="arrow up outer outer-14"></div>
+				</div>
+				<div class="row">
+					<div class="arrow up outer outer-1"></div>
+					<div class="arrow down outer outer-2"></div>
+					<div class="arrow up inner inner-6"></div>
+					<div class="arrow down inner inner-5"></div>
+					<div class="arrow up inner inner-4"></div>
+					<div class="arrow down outer outer-13"></div>
+					<div class="arrow up outer outer-12"></div>
+				</div>
+				<div class="row">
+					<div class="arrow down outer outer-3"></div>
+					<div class="arrow up outer outer-4"></div>
+					<div class="arrow down inner inner-1"></div>
+					<div class="arrow up inner inner-2"></div>
+					<div class="arrow down inner inner-3"></div>
+					<div class="arrow up outer outer-11"></div>
+					<div class="arrow down outer outer-10"></div>
+				</div>
+				<div class="row">
+					<div class="arrow down outer outer-5"></div>
+					<div class="arrow up outer outer-6"></div>
+					<div class="arrow down outer outer-7"></div>
+					<div class="arrow up outer outer-8"></div>
+					<div class="arrow down outer outer-9"></div>
+				</div>
+			</div>
+		</div>
+		<div id="configScreen" class="container">
+			<!-- First Config Screen -->
+			<h1>Initial config</h1>
+			
+			<p class="info">Blabla, read the readme for the moment.</p>
+			
+			<p>Stations Database location</p>
+			<input id="initconf-dbloc-station" type="text" value="./app/data/stations.json">
+			
+			<p>Populated Systems Database location</p>
+			<input id="initconf-dbloc-popsyst" type="text" value="./app/data/systems_populated.json">
+			
+			<p>Socket.io Port</p>
+			<input id="initconf-conf-port" type="text" value="42000">
+			
+			<button onclick="validateInitialConfig();">Validate</button>
+			<p id="initconf-text-status">No error</p>
+			<button onclick="process.exit(0);">Exit</button>
+		</div>
+		<div id="homeScreen" class="container">
+			<div id="navbar">
+				<div id="clock-time">00:00:00</div>
+				<div>CMDR Default Name</div>
+				<div id="clock-date">00 ERR 3303</div>
+			</div>
+			<div id="footerMenu" class="footer">
+				<div class="button location" onclick="changeHomeScreen('systemInfo');"></div>
+				<!--<div class="button planet" onclick=""></div><!---->
+				<div class="button commodities disabled" onclick=""></div>
+				<div class="button profile" onclick="changeHomeScreen('playerInfo');"></div>
+				
+				<div class="button spacer notes" onclick="changeHomeScreen('notes');"></div>
+				
+				<div class="button exit right" onclick=""></div>
+				<div class="button volume-on right" onclick="changeFooterMenu('footerVolume');"></div>
+				<div class="button menu right spacer" onclick="changeHomeScreen('mainMenu');"></div>
+			</div>
+			<div id="footerVolume" class="footer">
+				<button onclick="changeFooterMenu('footerMenu');">Close</button>
+			</div>
+			
+			<!-- Sub panels -->
+			<div id="systemInfo" class="subcontainer">
+				<div id="systemNameBar">
+					<div class="none"></div>
+					<div>No System Selected</div>
+				</div>
+				systemInfo
+			</div>
+			<div id="stationInfo" class="subcontainer">
+				stationInfo
+			</div>
+			
+			
+			<div id="notes" class="subcontainer">
+				<div id="notes-menu">
+					
+				</div>
+				<div id="notes-bookmarks">
+					<div class="sidebar">
+						
+					</div>
+					<div class="editor">
+						
+					</div>
+				</div>
+				<div id="notes-notes" class="sidebar">
+					<div class="sidebar">
+						
+					</div>
+					<div class="editor">
+						
+					</div>
+				</div>
+			</div>
+			
+			
+			<div id="spotify" class="subcontainer">
+				spotify
+			</div>
+			<div id="playerInfo" class="subcontainer">
+				<h1>playerInfo</h1>
+				money / ship / ???
+			</div>
+			<div id="mainMenu" class="subcontainer">
+				<ul>
+					<li id="mm-item-ua42">Home</li>
+					<li id="mm-item-d9k3">Menus ?
+						<ul>
+							<li id="mm-sub-d9k3-1">Search</li>
+							<li id="mm-sub-d9k3-2"></li>
+						</ul>
+					</li>
+					<li id="mm-item-fcku">Audio / Music
+						<ul>
+							<li id="mm-sub-fcku-1" onclick="changeHomeScreen('spotify');">Spotify</li>
+							<li id="mm-sub-fcku-2">Bandcamp</li>
+							<li id="mm-sub-fcku-3">???</li>
+						</ul>
+					</li>
+					<li id="mm-item-hell">Options
+						<ul>
+							<li id="mm-sub-hell-1">Configs</li>
+							<li id="mm-sub-hell-2">Quit</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<script>
+			console.log("Loading basic modules...");
+			var $ = require("./js/jquery-3.1.1.min.js"),
+				jQuery = require("./js/jquery-3.1.1.min.js");
+			$(".container:not(#loadingScreen)").hide();
+			
+			var fs = require("fs");
+			var server = require('http').createServer();
+			var io = require('socket.io')(server);
+			var dateFormat = require('dateformat');
+			var inoe = require("isnullorempty");
+			
+			var low = require('lowdb');
+			
+			var db = {
+				config: null, //config-app.json
+				edStations: null, // See db.config.databases.stations
+				edSystems: null // See db.config.databases.systemsPopulated
+			};
+			
+		</script>
+		<script src="./js/jquery-ui.min.js"></script>
+		<script src="./js/hammer-2.0.8.min.js"></script>
+		<script>
+			//$(".container:not(#loadingScreen)").hide();
+			
+			$(document).ready(function() {
+				load();
+			});
+			
+			function load() {
+				//console.log("load() called !");
+				if(inoe.isNullOrEmpty(db.config)) {
+					console.log("Loading config...");
+					db.config = low('config-app.json');
+					db.config.defaults(
+						{
+							port: 42000,
+							isConfigured: false,
+							options: {
+								volume: 1.0,
+								muted: false
+							},
+							databases: {
+								stations: "",
+								systemsPopulated: ""
+							},
+							commander: {
+								name: "Unknown",
+								ship: {
+									name: "Sidewinder",
+									id: 0
+								},
+								money: "420",
+								ranks: {
+									combat: 0, trade: 0, exploration: 0, cqc: 0, empire: 0, federation: 0
+								},
+								progress: {
+									combat: 0, trade: 0, exploration: 0, cqc: 0, empire: 0, federation: 0
+								},
+								location: {
+									docked: false,
+									supercruise: false,
+									landed: false,
+									home: "Sol", //Will be sed later if tts is added.
+									station: {
+										name: "Unknown",
+										type: "Unknown",
+										allegiance: "Unknown",
+										economy: "!Unknown",
+										faction: "Unknown",
+										government: "!Unknown"
+									},
+									system: {
+										name: "Unknown",
+										allegiance: "Unknown",
+										economy: "!Unknown",
+										government: "!Unknown",
+										security: "!Unknown"
+									},
+									position: {
+										body: "Unknown",
+										bodyType: "Unknown",
+										latitude: 0.0,
+										longitude: 0.0
+									}
+								}
+							}
+						}
+					).write();
+				}
+				
+				if(db.config.get("isConfigured").value()) {
+					//TODO: add try & catch.
+					if(!inoe.isNullOrEmpty(db.config.get("databases.stations").value())) {
+						console.log("Loading stations database...");
+						db.edStations = low(db.config.get("databases.stations").value());
+					} else {
+						console.log("Skipping stations database");
+					}
+					
+					if(!inoe.isNullOrEmpty(db.config.get("databases.systemsPopulated").value())) {
+						console.log("Loading populated systems database...");
+						db.edSystems = low(db.config.get("databases.systemsPopulated").value());
+					} else {
+						console.log("Skipping populated systems database");
+					}
+					
+					console.log("Finished loading, now launching...");
+					//launch();
+					changeScreen("fade", 500, "homeScreen");
+				} else {
+					console.log("First config...");
+					changeScreen("fade", 500, "configScreen");
+					return;
+				}
+				
+				
+			}
+			
+			function launch() {
+				var cw = $('#mainMenu > ul div.icon').height();
+				$('#mainMenu > ul div.icon').css({'width':cw+'px'});
+				
+				//console.log("Launching server...");
+				io.on('connection', function(client) {
+					console.log("Logwatcher connected !");
+					
+					client.on('event', function(data) {
+						console.log(data);
+					});
+					client.on('log', function(data) {
+						//console.log(data);
+						processLog(data);
+					});
+					client.on('logRaw', function(data) {
+						var logData = false;
+						
+						try {
+							logData = JSON.parse(data);
+						} catch(err) {
+							console.error(err);
+							logData = false;
+						}
+						
+						if(!logData) {
+							console.log("unable to process logdata further...")
+						} else {
+							processLog(logData);
+						}
+					});
+					client.on('disconnect', function() {
+						console.log("Logwatcher disconnected !");
+					});
+				});
+				server.listen(db.get("port").value());
+				console.log("Listening on port: %s", db.get("port").value());
+			}
+			
+			function validateInitialConfig() {
+				// Simple file check, I won't baby proof everything again.
+				// If you fuck something up, you fix it.
+				$("#configScreen #initconf-text-status").text("Checking...");
+				var paths = {
+					stations: $("#configScreen #initconf-dbloc-station").val(),
+					popSystems: $("#configScreen #initconf-dbloc-popsyst").val()
+				};
+				if(!fs.existsSync(paths.stations) && paths.stations.length!=0) {
+					$("#configScreen #initconf-text-status").text("Station DB not found !");
+					return;
+				}
+				if(!fs.existsSync(paths.popSystems) && paths.popSystems.length!=0) {
+					$("#configScreen #initconf-text-status").text("PopSyst DB not found !");
+					return;
+				}
+				$("#configScreen #initconf-text-status").text("Done");
+				db.config.set("isConfigured", true).write();
+				db.config.set("databases.stations", paths.stations).write();
+				db.config.set("databases.systemsPopulated", paths.popSystems).write();
+				db.config.set("port", $("#configScreen #initconf-conf-port").val()).write();
+				
+				changeScreen("fade", 500, "loadingScreen", function() {
+					load();
+				});
+			}
+			
+			function changeScreen(transition, time, newScreenId, cb) {
+				$(".container:visible").hide(transition, time, function() {
+					if(newScreenId==="homeScreen")
+						$("#homeScreen .subcontainer:not(#systemInfo)").hide();
+					$(".container#"+newScreenId).show(transition, time, cb);
+				});
+			}
+			
+			function changeHomeScreen(newScreenId) {
+				$("#homeScreen .subcontainer:visible").hide("drop", 250, function() {
+					$("#homeScreen .subcontainer#"+newScreenId).show("drop", 250);
+				});
+			}
+			
+			function changeFooterMenu(newMenuId) {
+				$("#homeScreen .footer:visible").hide("fade", 250);
+				$("#homeScreen .footer#"+newMenuId).show("fade", 250);/**/
+			}
+			
+			function processLog(data) {
+				//console.log("Processing: %s", JSON.stringify(logData));
+				console.log(data);
+				
+				if(data.event == null) {
+					console.warn("Unprocessable data recieved !")
+					return;
+				}
+				
+				// Info: https://forums.frontier.co.uk/showthread.php/275151-Commanders-log-manual-and-data-sample
+				switch(data.event) {
+					case "LoadGame":
+						db.set('player.name', data.Commander).write();
+						db.set('player.ship.name', data.Ship).write();
+						db.set('player.ship.id', data.ShipID).write();
+						db.set('player.money', data.Credits).write();
+						db.set('player.location.supercruise', false).write();
+						break;
+					case "Undocked":
+						db.set('player.location.docked', false).write();
+						break;
+					case "Progress":
+					case "Rank":
+						var playerCat = (data.event==="Rank") ? "ranks" : "progress";
+						db.set('player.' + playerCat + '.combat', data.Combat).write();
+						db.set('player.' + playerCat + '.trade', data.Trade).write();
+						db.set('player.' + playerCat + '.exploration', data.Explore).write();
+						db.set('player.' + playerCat + '.cqc', data.CQC).write();
+						db.set('player.' + playerCat + '.empire', data.Empire).write();
+						db.set('player.' + playerCat + '.federation', data.Federation).write();
+						break;
+					case "Docked":
+						db.set('player.location.docked', true).write();
+						db.set('player.location.system.name', data.StarSystem).write();
+						db.set('player.location.station.name', data.StationName).write();
+						db.set('player.location.station.type', data.StationType).write();
+						db.set('player.location.station.allegiance', data.StationAllegiance).write();
+						db.set('player.location.station.faction', data.StationFaction).write();
+						
+						//db.set('player.location.station.economy', data.StationEconomy_Localised).write();
+						//db.set('player.location.station.government', data.StationGovernment_Localised).write();
+						db.set('player.location.station.economy', data.StationEconomy).write();
+						db.set('player.location.station.government', data.StationGovernment).write();
+						break;
+					case "Location":
+						// UNFINISHED
+						db.set('player.location.docked', data.Docked).write();
+						if(data.Docked) {
+							db.set('player.location.station.name', data.StationName).write();
+							db.set('player.location.station.type', data.Allegiance).write();
+						}
+						db.set('player.location.system.name', data.StarSystem).write();
+						db.set('player.location.system.allegiance', data.StarSystem).write();
+						//Economy, Government, Security
+						//console.log(data);
+						break;
+					case "SupercruiseEntry":
+						db.set('player.location.supercruise', true).write();
+						db.set('player.location.system.name', data.StarSystem).write();
+						break;
+					case "SupercruiseExit":
+						db.set('player.location.supercruise', false).write();
+						db.set('player.location.system.name', data.StarSystem).write();
+						db.set('player.location.position.body', data.Body).write();
+						db.set('player.location.position.bodyType', data.BodyType).write();
+						break;
+					//Todo: combine the entry and exit
+					case "Touchdown":
+						db.set('player.location.landed', true).write();
+						db.set('player.location.position.latitude', data.Latitude).write();
+						db.set('player.location.position.longitude', data.Longitude).write();
+						break;
+					case "Liftoff":
+						db.set('player.location.landed', false).write();
+						db.set('player.location.position.latitude', data.Latitude).write();
+						db.set('player.location.position.longitude', data.Longitude).write();
+						break;
+					case "FSDJump":
+						db.set('player.location.supercruise', true).write();
+						db.set('player.location.system.name', data.StarSystem).write();
+						db.set('player.location.system.allegiance', data.SystemAllegiance).write();
+						db.set('player.location.system.economy', data.SystemEconomy).write();
+						db.set('player.location.system.government', data.SystemGovernment).write();
+						db.set('player.location.system.security', data.SystemSecurity).write();
+						break;
+					case "Unknown":
+						
+						break;
+					default:
+						//console.log(data);
+						break;
+				}
+			}
+			
+			function updateTimeClock() {
+				var now = new Date();
+				$("#clock-time").text(dateFormat(now, "UTC:HH:MM:ss"));
+				setTimeout(updateTimeClock, 1000);
+			}
+			function updateDateClock() {
+				var now = new Date();
+				now.setFullYear(now.getFullYear() + 1286);
+				$("#clock-date").text(dateFormat(now, "dd mmm yyyy"));
+				setTimeout(updateDateClock, 60000);
+			}
+			updateTimeClock();
+			updateDateClock();
+			
+			function getStationInfos(stationName) {
+				return edStations.find({ name: stationName }).value();
+			}
+			
+			function getSystemInfos(systemName) {
+				return edSystems.find({ name: systemName }).value();
+			}
+			
+			//quick fix
+			//var config = {muted: false};
+			//Buttons sounds
+			$(".button:not(.disabled)").each(function(i) {
+				if(i != 0) {
+					$("#sfx-highlight").clone().attr("id", "sfx-highlight" + i).appendTo($(this).parent());
+				}
+				$(this).data("beeper", i);
+			}).mouseenter(function() {
+				if(!db.config.get("options.muted").value()) {
+					$("#sfx-highlight" + $(this).data("beeper"))[0].play();
+				}
+			});
+			$("#sfx-highlight").attr("id", "sfx-highlight0");
+
+			$(".button:not(.disabled)").click(function() {
+				if(!db.config.get("options.muted").value()) {
+					document.getElementById("sfx-click").play();
+				}
+			});
+			
+			$("#mainMenu li").click(function() {
+				if(!db.config.get("options.muted").value()) {
+					document.getElementById("sfx-click").play();
+				}
+			});
+		</script>
+	</body>
+</html>

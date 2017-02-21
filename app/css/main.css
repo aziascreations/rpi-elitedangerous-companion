@@ -1,0 +1,317 @@
+/* Fonts stuff */
+@font-face {
+  font-family: "eurocaps";
+  src: url("../fonts/eurocaps.ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "syntony";
+  src: url("../fonts/Sintony-Regular.ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "syntony";
+  src: url("../fonts/Sintony-Bold.ttf");
+  font-weight: bold;
+  font-style: normal; }
+
+/*@font-face {
+	font-family: "telegrama";
+	src: url('../fonts/telegrama_raw_osn.otf');
+}*/
+/* More stuff */
+body, html {
+  background: repeating-linear-gradient(to bottom, rgba(13, 13, 13, 0.9), rgba(13, 13, 13, 0.9) 3px, rgba(16, 16, 16, 0.9) 3px, rgba(16, 16, 16, 0.9) 6px);
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: white;
+  font-family: "syntony", sans-serif;
+  color: #ff7100;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: default; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "eurocaps", sans-serif; }
+
+.container {
+  width: 100vw;
+  height: 100vh; }
+  .container#loadingScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+
+#homeScreen {
+  /* Fix the loading screen mess */
+  display: none;
+  /*#currentSystem {
+		color: darkorange;
+	}/**/
+  /* Subcontainers */ }
+  #homeScreen .subcontainer {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    padding-bottom: 12px;
+    overflow-y: hidden;
+    overflow-y: auto;
+    width: 100%;
+    height: calc(100% - 64px - 32px - 12px); }
+  #homeScreen #navbar, #homeScreen #footerMenu, #homeScreen .footer {
+    -webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.75);
+    z-index: 100; }
+  #homeScreen #navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 32px; }
+    #homeScreen #navbar div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.25em;
+      font-family: "eurocaps", sans-serif !important;
+      letter-spacing: 1px; }
+      #homeScreen #navbar div:first-child {
+        left: 24px;
+        justify-content: flex-start; }
+      #homeScreen #navbar div:last-child {
+        left: -24px;
+        justify-content: flex-end; }
+  #homeScreen .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px; }
+  #homeScreen #footerVolume {
+    display: none; }
+  #homeScreen #footerMenu .button {
+    width: 52px;
+    height: 52px;
+    transition: ease 0.25s;
+    display: inline-block;
+    margin: 6px 0 0 8px;
+    background: #b43d0d; }
+    #homeScreen #footerMenu .button:hover {
+      background: #f87100; }
+    #homeScreen #footerMenu .button.location {
+      -webkit-mask-box-image: url("../img/svg/wpzoom/planet.svg") stretch; }
+    #homeScreen #footerMenu .button.profile {
+      -webkit-mask-box-image: url("../img/svg/wpzoom/user.svg") stretch; }
+    #homeScreen #footerMenu .button.commodities {
+      -webkit-mask-box-image: url("../img/svg/wpzoom/ecommerce.svg") stretch; }
+    #homeScreen #footerMenu .button.notes {
+      -webkit-mask-box-image: url("../img/svg/wpzoom/book.svg") stretch; }
+    #homeScreen #footerMenu .button.spacer {
+      margin-left: 40px; }
+    #homeScreen #footerMenu .button.disabled {
+      background-color: darkslategrey; }
+    #homeScreen #footerMenu .button:not(.disabled) {
+      cursor: pointer; }
+    #homeScreen #footerMenu .button.right {
+      float: right;
+      margin: 6px 8px 0 0; }
+      #homeScreen #footerMenu .button.right.spacer {
+        margin-right: 40px; }
+    #homeScreen #footerMenu .button.menu {
+      -webkit-mask-box-image: url("../img/svg/wpzoom/gear.svg") stretch; }
+    #homeScreen #footerMenu .button.volume-on {
+      -webkit-mask-box-image: url("../img/svg/wpzoom/volume.svg") stretch; }
+    #homeScreen #footerMenu .button.volume-off {
+      -webkit-mask-box-image: url("../img/svg/wpzoom/volume.svg") stretch; }
+    #homeScreen #footerMenu .button.exit {
+      -webkit-mask-box-image: url("../img/svg/wpzoom/minimize.svg") stretch; }
+  #homeScreen #systemInfo #systemNameBar {
+    width: 100%;
+    height: 64px;
+    margin-top: 12px; }
+    #homeScreen #systemInfo #systemNameBar div {
+      display: inline-block;
+      height: 100%;
+      min-height: 100%; }
+      #homeScreen #systemInfo #systemNameBar div:first-child {
+        background-color: #b43d0d;
+        width: 64px;
+        margin-left: 8px; }
+      #homeScreen #systemInfo #systemNameBar div.none {
+        width: 0;
+        margin-left: 0; }
+      #homeScreen #systemInfo #systemNameBar div.empire {
+        -webkit-mask-box-image: url("../img/factions/Empire.svg") round;
+        width: 102.4px; }
+      #homeScreen #systemInfo #systemNameBar div.federation {
+        -webkit-mask-box-image: url("../img/factions/Federation.svg") round;
+        width: 83.2px; }
+      #homeScreen #systemInfo #systemNameBar div.alliance {
+        -webkit-mask-box-image: url("../img/factions/Alliance.svg") round; }
+      #homeScreen #systemInfo #systemNameBar div:last-child {
+        display: inline-flex;
+        margin-left: 10px;
+        vertical-align: top;
+        font-size: 1.5em;
+        align-items: center; }
+  #homeScreen #notes {
+    margin: 0; }
+    #homeScreen #notes #notes-menu {
+      width: 100%;
+      height: 48px;
+      border-bottom: 2px solid #B24700;
+      margin-top: 8px; }
+    #homeScreen #notes > div:not(#notes-menu) {
+      width: 100%;
+      height: calc(100% - 48px - 2px - 8px); }
+    #homeScreen #notes .sidebar {
+      height: 100%;
+      border-right: 1px solid #993A00;
+      width: 40%; }
+    #homeScreen #notes .editor {
+      height: 100%;
+      width: calc(60% - 1px); }
+    #homeScreen #notes #notes-notes {
+      display: none; }
+
+#mainMenu > ul {
+  margin: 0 12px 12px 12px;
+  /*div.icon {
+			height: 100%;
+			background-color: aqua;
+		}/**/ }
+  #mainMenu > ul > li {
+    font-weight: bold;
+    font-size: 1.7em;
+    margin: 16px 0 4px 0; }
+    #mainMenu > ul > li:not(:first-child) {
+      margin-top: 20px; }
+    #mainMenu > ul > li ul {
+      margin-left: 16px; }
+      #mainMenu > ul > li ul li {
+        font-size: 1.0em;
+        margin: 16px 0 0 0;
+        font-weight: normal; }
+  #mainMenu > ul li {
+    cursor: pointer; }
+
+#configScreen {
+  display: none;
+  padding: 12px; }
+  #configScreen h1 {
+    font-weight: bold;
+    font-size: 1.7em;
+    margin-bottom: 8px; }
+  #configScreen p {
+    margin: 4px 0 0 8px; }
+    #configScreen p.info {
+      margin: 6px 0 12px 2px;
+      font-size: 1.1em; }
+  #configScreen input {
+    margin: 4px 0 12px 12px;
+    width: 33%; }
+  #configScreen button {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 16px; }
+    #configScreen button:last-child {
+      left: auto;
+      right: 0; }
+
+/* Hide scrollbar in webkit */
+/* Source: http://stackoverflow.com/a/30680994/4135541 */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background: #FF0000; }
+
+/* Loading Icon */
+/* Source: http://codepen.io/jpanter/pen/PWWQXK */
+.dank-ass-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .dank-ass-loader .row {
+    display: flex; }
+
+.arrow {
+  width: 0;
+  height: 0;
+  margin: 0 -6px;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 21.6px solid #fd7000;
+  animation: blink 1s infinite;
+  filter: drop-shadow(0 0 18px #fd7000); }
+  .arrow.down {
+    transform: rotate(180deg); }
+  .arrow.outer-1 {
+    animation-delay: -0.05556s; }
+  .arrow.outer-2 {
+    animation-delay: -0.11111s; }
+  .arrow.outer-3 {
+    animation-delay: -0.16667s; }
+  .arrow.outer-4 {
+    animation-delay: -0.22222s; }
+  .arrow.outer-5 {
+    animation-delay: -0.27778s; }
+  .arrow.outer-6 {
+    animation-delay: -0.33333s; }
+  .arrow.outer-7 {
+    animation-delay: -0.38889s; }
+  .arrow.outer-8 {
+    animation-delay: -0.44444s; }
+  .arrow.outer-9 {
+    animation-delay: -0.5s; }
+  .arrow.outer-10 {
+    animation-delay: -0.55556s; }
+  .arrow.outer-11 {
+    animation-delay: -0.61111s; }
+  .arrow.outer-12 {
+    animation-delay: -0.66667s; }
+  .arrow.outer-13 {
+    animation-delay: -0.72222s; }
+  .arrow.outer-14 {
+    animation-delay: -0.77778s; }
+  .arrow.outer-15 {
+    animation-delay: -0.83333s; }
+  .arrow.outer-16 {
+    animation-delay: -0.88889s; }
+  .arrow.outer-17 {
+    animation-delay: -0.94444s; }
+  .arrow.outer-18 {
+    animation-delay: -1s; }
+  .arrow.inner-1 {
+    animation-delay: -0.16667s; }
+  .arrow.inner-2 {
+    animation-delay: -0.33333s; }
+  .arrow.inner-3 {
+    animation-delay: -0.5s; }
+  .arrow.inner-4 {
+    animation-delay: -0.66667s; }
+  .arrow.inner-5 {
+    animation-delay: -0.83333s; }
+  .arrow.inner-6 {
+    animation-delay: -1s; }
+
+@keyframes blink {
+  0% {
+    opacity: 0.1; }
+  30% {
+    opacity: 1; }
+  100% {
+    opacity: 0.1; } }
